@@ -1,5 +1,6 @@
 {
   "name": "rent_car",
+  "homepage": "https://AlexTkachenkoFullstack.github.io/rent_car/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

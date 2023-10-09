@@ -2,8 +2,9 @@ import React from 'react';
  import { Field, Formik } from 'formik';
 import { useSelector } from 'react-redux';
 import { getAllCars } from '../../redux/cars/selectors';
-import { ButtonFilter, FormContainer, InputMileage, InputPrice, Label, MilageContainer, OptionBrand, OptionPrice } from './FormikFilter.styled';
- 
+import { ButtonFilter, FormContainer, InputMileage, Label, MilageContainer, OptionBrand, OptionPrice } from './FormikFilter.styled';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 const inputBrand={
     fontSize:'18px',
     lineHeight:'1.33',
@@ -35,20 +36,23 @@ const carsBrandsArray=[...carsBrands];
 const rentPrice=[30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200]
 
 const handleSubmit=({brand, price, minMileage, maxMileage}, actions)=>{
-    const valuesToSend = {
+    if( minMileage && maxMileage && minMileage>=maxMileage){
+      Notify.failure('Min mileage cannot be greater than max mileage');
+      return
+    }
+  const valuesToSend = {
         brand,
         price,
         minMileage,
         maxMileage,
       };
     onSubmit(valuesToSend)    
-    actions.resetForm() 
 }
 
    return (
    <div>
      <Formik
-       initialValues={{ brand: '', price: '', minMileage: '', maxMileage: '' }}
+       initialValues={{ brand: 'All brands', price: 'All', minMileage: '', maxMileage: '' }}
        onSubmit={ handleSubmit}
      >
          <FormContainer>

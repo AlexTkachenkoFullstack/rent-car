@@ -24,3 +24,18 @@ export const MainContentContainer = styled.div`
   display: grid;
   grid-gap: 20px;
 `;
+
+export const NoContentContainer=styled.div`
+display:flex;
+flex-direction:column;
+width:100%;
+padding-top:30px;
+`
+export const NoContentText=styled.p`
+margin-left:auto;
+margin-right:auto;
+font-size:20px;
+line-height:1.6;
+font-weight:500;
+font-family: Manrope, sans-serif;
+`

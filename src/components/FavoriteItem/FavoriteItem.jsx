@@ -24,7 +24,7 @@ const FavoriteItem=({car})=>{
     return(<>
             <CardContainer>
                 <ImageContainer onClick={openCarModal}>
-                    <Image src={car.img}/>
+                    <Image src={car.img || car.photoLink} alt='car' />
                 </ImageContainer>
                 <DescriptionContainer>
                     <DescriptionText>{car.make} {car.model}, {car.year}</DescriptionText>

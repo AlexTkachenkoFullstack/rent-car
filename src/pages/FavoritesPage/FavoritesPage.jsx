@@ -1,28 +1,41 @@
 import { useSelector } from "react-redux";
 import FormikFilter from "../../components/FormikFilter";
-import { FavoritesPageContainer, MainContentContainer, SideBarContainer } from "./FavoritesPage.styled";
+import { FavoritesPageContainer, MainContentContainer, NoContentContainer, NoContentText, SideBarContainer } from "./FavoritesPage.styled";
 import { getAllCars, getFavorites } from "../../redux/cars/selectors";
 import { useEffect, useState } from "react";
 import FavoritesList from "../../components/FavoritesList/FavoritesList";
 
 const FavoritesPage = () => {
-  const [filter, setFilter]=useState({brand: 'All brands', price: 'All', minMileage: null, maxMileage: null})
-const allFavoutite=useSelector(getFavorites);
+  const [filter, setFilter]=useState({brand: 'All brands', price: 'All', minMileage: '', maxMileage: ''})
+const allFavorite=useSelector(getFavorites);
 const [carsToShow, setCarsToShow]=useState([])
+
 const handleSubmitFilter=(data)=>{
   setFilter(data)
 }
 
 useEffect(()=>{
-  setCarsToShow(allFavoutite)
-},[allFavoutite])
+    const filterList=allFavorite?.filter(item=>(
+      (filter.brand==='All brands' ? true : item.make===filter.brand)
+      && (filter.price==='All' ? true : parseFloat(item.rentalPrice.replace('$', ''))<=Number(filter.price))
+      && (!filter.minMileage ? true : item.mileage>=filter.minMileage)
+      && (!filter.maxMileage ? true : item.mileage<=filter.maxMileage)))
+    setCarsToShow(filterList)
+},[allFavorite, filter.brand, filter.maxMileage, filter.minMileage, filter.price])
 
     return (
       <FavoritesPageContainer >
           <SideBarContainer>
               <FormikFilter onSubmit={handleSubmitFilter}/>
           </SideBarContainer>
-          <FavoritesList favoriteCars={carsToShow}/>
+          {carsToShow.length>0 
+          ?<FavoritesList favoriteCars={carsToShow}/>
+          :(<NoContentContainer>
+            <NoContentText>Sorry.</NoContentText>
+            <NoContentText> Nothing could be found using the selected filter. </NoContentText>
+            <NoContentText> Try changing the filter.</NoContentText>
+          </NoContentContainer>)
+          }
       </FavoritesPageContainer>
     );
   };

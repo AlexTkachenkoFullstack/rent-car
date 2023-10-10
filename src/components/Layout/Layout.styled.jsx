@@ -9,4 +9,5 @@ flex-direction: column;
 export const MainContainer=styled.main`
      flex: 1; 
      overflow: auto;
+     padding-top: 20px;
 `

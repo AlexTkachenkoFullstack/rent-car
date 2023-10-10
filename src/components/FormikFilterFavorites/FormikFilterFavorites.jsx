@@ -2,7 +2,7 @@ import React from 'react';
  import { Field, Formik } from 'formik';
 import { useSelector } from 'react-redux';
 import { getAllCars } from '../../redux/cars/selectors';
-import { ButtonFilter, FormContainer, InputMileage, Label, MilageContainer, OptionBrand, OptionPrice } from './FormikFilter.styled';
+import { ButtonFilter, FormContainer, InputMileage, Label, MilageContainer, OptionBrand, OptionPrice } from './FormikFilterFavorites.styled';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const inputBrand={
@@ -29,7 +29,7 @@ const inputPrice={
     outline: 'none'
     }
 
- const FormikFilter = ({onSubmit}) => {
+ const FormikFilterFavorites = ({onSubmit}) => {
  const cars=useSelector(getAllCars);
  const carsBrands=new Set( [...cars.map(item=>item.make)].sort((a,b)=>a.localeCompare(b)));
 const carsBrandsArray=[...carsBrands];
@@ -85,4 +85,4 @@ const handleSubmit=({brand, price, minMileage, maxMileage}, actions)=>{
 }
 
 
- export default FormikFilter
+ export default FormikFilterFavorites

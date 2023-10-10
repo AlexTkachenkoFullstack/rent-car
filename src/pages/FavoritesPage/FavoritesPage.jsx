@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import FormikFilter from "../../components/FormikFilter";
-import { FavoritesPageContainer, MainContentContainer, NoContentContainer, NoContentText, SideBarContainer } from "./FavoritesPage.styled";
-import { getAllCars, getFavorites } from "../../redux/cars/selectors";
+import { FavoritesPageContainer,  NoContentContainer, NoContentText, SideBarContainer } from "./FavoritesPage.styled";
+import {  getFavorites } from "../../redux/cars/selectors";
 import { useEffect, useState } from "react";
 import FavoritesList from "../../components/FavoritesList/FavoritesList";
+import FormikFilterFavorites from "../../components/FormikFilterFavorites/FormikFilterFavorites";
 
 const FavoritesPage = () => {
   const [filter, setFilter]=useState({brand: 'All brands', price: 'All', minMileage: '', maxMileage: ''})
@@ -26,7 +26,7 @@ useEffect(()=>{
     return (
       <FavoritesPageContainer >
           <SideBarContainer>
-              <FormikFilter onSubmit={handleSubmitFilter}/>
+              <FormikFilterFavorites onSubmit={handleSubmitFilter}/>
           </SideBarContainer>
           {carsToShow.length>0 
           ?<FavoritesList favoriteCars={carsToShow}/>

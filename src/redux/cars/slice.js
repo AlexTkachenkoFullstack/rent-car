@@ -6,6 +6,7 @@ import {
 const initialState = {
   cars:[],
   favorites:[],
+  filtredCars:[],
   isLoading: false,
   error: null,
 };
@@ -41,6 +42,12 @@ export const carsSlice = createSlice({
         favorites: state.favorites.filter((item) => item.id !== action.payload.id),
       };
     },
+    addFilterCars(state,action){
+      return {
+        ...state,
+        filtredCars: action.payload,
+      };
+    }
   },
   extraReducers: builder => {
     builder
@@ -51,4 +58,4 @@ export const carsSlice = createSlice({
 });
 
 
-export const { addCar, deleteCar } = carsSlice.actions;
+export const { addCar, deleteCar, addFilterCars } = carsSlice.actions;

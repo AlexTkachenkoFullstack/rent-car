@@ -1,4 +1,4 @@
-# Car Rental App
+# Rent-car App
 
 This is a web application for a car rental company that provides car rental services in Ukraine. The application consists of three main pages:
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import CarsList from "../../components/CarsList";
 import { LoadMoreButton, LoadMoreButtonContainer, NoContentContainer, NoContentText } from "./CatalogPage.styled";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCars, getFilterCars } from "../../redux/cars/selectors";
+import { getAllCars, getFilterCars, isCarsLoading } from "../../redux/cars/selectors";
 import FormikFilterAll from "../../components/FormikFilterAll/FormikFilterAll";
 import { addFilterCars } from "../../redux/cars/slice";
 
@@ -17,6 +17,7 @@ const CatalogPage = () => {
   const carsArray=useSelector(getAllCars);
   const dispatch =useDispatch()
   const filtredCars=useSelector(getFilterCars)
+  const isCarLoading = useSelector(isCarsLoading);
 
   const handleSubmitFilter=(data)=>{
    setFilter(data);
@@ -60,14 +61,16 @@ const CatalogPage = () => {
 
     return (<>
               <FormikFilterAll onSubmit={handleSubmitFilter}/>
-              {filtredCars.length>0 
-              ?(<>
+              {filtredCars.length>0 && (<>
                   <CarsList cars={displayedCars}/>
                   <LoadMoreButtonContainer>
                       {showButtonLoadMore && <LoadMoreButton type="button" onClick={handleLoadMore}>Load more</LoadMoreButton>}
-                  </LoadMoreButtonContainer>
-                </>)
-              :(<NoContentContainer>
+                  </LoadMoreButtonContainer></>)
+                }
+                {filtredCars.length===0 
+                && !isCarLoading 
+                &&
+              (<NoContentContainer>
                   <NoContentText>Sorry.</NoContentText>
                   <NoContentText> Nothing could be found using the selected filter. </NoContentText>
                   <NoContentText> Try changing the filter.</NoContentText>

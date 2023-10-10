@@ -1,14 +1,15 @@
 import { useSelector } from "react-redux";
 import { FavoritesPageContainer,  NoContentContainer, NoContentText, SideBarContainer } from "./FavoritesPage.styled";
-import {  getFavorites } from "../../redux/cars/selectors";
+import {  getFavorites, isCarsLoading } from "../../redux/cars/selectors";
 import { useEffect, useState } from "react";
 import FavoritesList from "../../components/FavoritesList/FavoritesList";
 import FormikFilterFavorites from "../../components/FormikFilterFavorites/FormikFilterFavorites";
 
 const FavoritesPage = () => {
-  const [filter, setFilter]=useState({brand: 'All brands', price: 'All', minMileage: '', maxMileage: ''})
+const [filter, setFilter]=useState({brand: 'All brands', price: 'All', minMileage: '', maxMileage: ''})
 const allFavorite=useSelector(getFavorites);
 const [carsToShow, setCarsToShow]=useState([])
+const isCarLoading = useSelector(isCarsLoading);
 
 const handleSubmitFilter=(data)=>{
   setFilter(data)
@@ -28,14 +29,14 @@ useEffect(()=>{
           <SideBarContainer>
               <FormikFilterFavorites onSubmit={handleSubmitFilter}/>
           </SideBarContainer>
-          {carsToShow.length>0 
-          ?<FavoritesList favoriteCars={carsToShow}/>
-          :(<NoContentContainer>
+          {carsToShow.length>0 && <FavoritesList favoriteCars={carsToShow}/>}
+          {carsToShow.length===0 
+          && !isCarLoading 
+          && (<NoContentContainer>
             <NoContentText>Sorry.</NoContentText>
             <NoContentText> Nothing could be found using the selected filter. </NoContentText>
             <NoContentText> Try changing the filter.</NoContentText>
-          </NoContentContainer>)
-          }
+          </NoContentContainer>)}
       </FavoritesPageContainer>
     );
   };

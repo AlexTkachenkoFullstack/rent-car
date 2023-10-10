@@ -1,17 +1,57 @@
+import {FooterSocial,FooterSocialList, FooterSocialItem, FooterSocialLink, FacebookIcon,  InstagramIcon, FooterContact, FooterContactsContainer, FooterContainer, FooterLink, FooterLinkItem, FooterLinksContainer, FooterLinksList, FooterSection, LinkLogo, Logo, TwitterIcon } from "./Footer.styled";
+import logo from './/..//..//..//assets/images/logo.svg'
+
 const Footer=()=>{
     return (
-                <footer className="container">
-            {/* <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="logo.png" alt="Логотип [Название Компании]"/>
-                </div>
+                <FooterSection >
+                    <FooterContainer className="container">
+                                <LinkLogo to='/'>
+                                    <Logo src={logo} alt='car-logo'/>
+                                </LinkLogo>
+                                <FooterLinksContainer>
+                                    <FooterLinksList>
+                                        <FooterLinkItem>
+                                            <FooterLink to='/'>About us</FooterLink>
+                                        </FooterLinkItem>
+                                        <FooterLinkItem>
+                                            <FooterLink to='/catalog'>Our catalog</FooterLink>
+                                        </FooterLinkItem>
+                                        <FooterLinkItem>
+                                            <FooterLink to='/favorites'>Your favorites</FooterLink>
+                                        </FooterLinkItem>
+                                    </FooterLinksList>
+                                </FooterLinksContainer>
+                                <FooterContactsContainer>
+                                    <FooterContact>Contact Information:</FooterContact>
+                                    <FooterContact>Address: 14000, Chernihiv, Shevchenko street, 27</FooterContact>
+                                    <FooterContact>Phone: +38(093)11-33-254</FooterContact>
+                                    <FooterContact>Email: rent-car@.ukr.net</FooterContact>
+                                </FooterContactsContainer>
+                                <FooterSocial>
+                                    <FooterContact>We are on social media:</FooterContact>
+                                    <FooterSocialList>
+                                        <FooterSocialItem>
+                                            <FooterSocialLink href="https://www.facebook.com/RentcarsUS/" target="_blank" title="Facebook">
+                                                <FacebookIcon/>
+                                            </FooterSocialLink>
+                                        </FooterSocialItem>
+                                        <FooterSocialItem>
+                                            <FooterSocialLink href="https://twitter.com/rentalcarsuk" target="_blank" title="Twitter">
+                                                <TwitterIcon/>
+                                            </FooterSocialLink>
+                                        </FooterSocialItem>
+                                        <FooterSocialItem>
+                                            <FooterSocialLink href="https://www.instagram.com/rentcars.com/" target="_blank" title="Instagram">
+                                                <InstagramIcon />
+                                            </FooterSocialLink>
+                                        </FooterSocialItem>
+                                    </FooterSocialList>
+                                </FooterSocial>
+
+                        
+            {/* 
                 <div class="footer-links">
-                    <ul>
-                        <li><a href="#">Главная</a></li>
-                        <li><a href="#">Автомобили</a></li>
-                        <li><a href="#">Услуги</a></li>
-                        <li><a href="#">Контакты</a></li>
-                    </ul>
+                 
                 </div>
                 <div class="footer-contact">
                     <p>Контактная информация:</p>
@@ -21,14 +61,16 @@ const Footer=()=>{
                 </div>
             </div>
             <div class="footer-social">
-                <p>Мы в социальных сетях:</p>
+                <p>We are on social media:</p>
                 <ul>
                     <li><a href="#" target="_blank"><img src="facebook-icon.png" alt="Facebook"/></a></li>
                     <li><a href="#" target="_blank"><img src="twitter-icon.png" alt="Twitter"/></a></li>
                     <li><a href="#" target="_blank"><img src="instagram-icon.png" alt="Instagram"/></a></li>
                 </ul>
             </div> */}
-        </footer>
+                
+            </FooterContainer>
+        </FooterSection>
     );
 }
 

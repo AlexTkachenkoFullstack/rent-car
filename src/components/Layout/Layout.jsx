@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom';
-// import { Suspense } from 'react';
+import { Suspense } from 'react';
 
 import Header from './Header';
 import { BodyContainer, MainContainer } from './Layout.styled';
 import Footer from './Footer';
-// import Loader from 'components/Loader/Loader';
+import Loader from './/..//Loader/Loader';
 
 const Layout = () => {
   return (
@@ -12,9 +12,9 @@ const Layout = () => {
      <BodyContainer >
         <Header />
         <MainContainer className="container">
-          {/* <Suspense fallback={<Loader />}> */}
+          <Suspense fallback={<Loader />}>
             <Outlet />
-          {/* </Suspense> */}
+          </Suspense>
         </MainContainer>
         <Footer/>
       </BodyContainer>

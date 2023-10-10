@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container=styled.div`
+padding-bottom:20px;
 `
 export const Title=styled.h1`
 font-size:32px;
@@ -36,6 +37,7 @@ line-height: 1.25;
 `
 
 export const ListServices=styled.ul`
+list-style: inside;
 font-size:28px;
 font-family:'Dancing Script', cursive;
 font-weight: 700;

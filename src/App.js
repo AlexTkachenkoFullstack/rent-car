@@ -1,14 +1,14 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import CatalogPage from './pages/CatalogPage';
-import FavoritesPage from './pages/FavoritesPage';
 import Layout from './components/Layout';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, lazy } from 'react';
 import { fetchCars } from './redux/cars/operations';
 import { isCarsLoading } from './redux/cars/selectors';
 import Loader from './components/Loader';
 
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const CatalogPage = lazy(() => import('./pages/CatalogPage/CatalogPage'));
+const FavoritesPage = lazy(() => import('./pages/FavoritesPage/FavoritesPage'));
 
 function App() {
   const isCarLoading = useSelector(isCarsLoading);
@@ -19,9 +19,7 @@ function App() {
 
   return (
     <>
-    {isCarLoading  
-    ? <Loader />
-    : <Routes>
+      <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />}/>
           <Route path="catalog" element={<CatalogPage />}/>
@@ -29,7 +27,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
-      }
+      {isCarLoading && <Loader />}
     </>
   );
 }

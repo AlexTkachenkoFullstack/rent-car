@@ -9,7 +9,7 @@ export const FavoritesPageContainer = styled.div`
 
 export const SideBarContainer = styled.div`
 width: 250px;
-min-height: calc(100vh - 185px);
+min-height: calc(100vh - 225px);
 height:auto;
 background-color: #f0f0f0;
 padding: 20px;

@@ -39,11 +39,11 @@ The project structure is organized as follows:
 
 ## Usage
 
-- Visit the home page to learn about the company's services.
-- Navigate to the catalog page to browse and filter cars.
-- Add advertisements to your favorites list by clicking the heart icon.
-- Click on an advertisement to view detailed information in a modal window.
-- Use the provided filters to refine your car search.
+1. Visit the [Rent Car App](https://alextkachenkofullstack.github.io/rent-car/).
+2. Explore the catalog and use the filters to find your ideal car.
+3. Click on the "Learn more" button to view detailed information about a car.
+4. Save your favorite car listings by clicking the heart icon.
+5. Visit the "Favorites" page to see your saved listings.
 
 
 # Getting Started with Create React App

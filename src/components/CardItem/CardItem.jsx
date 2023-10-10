@@ -25,7 +25,7 @@ useEffect(()=>{
     if(isFavorite){
         setFavorite(true)
     }
-},[])
+},[car.id, favouriteCars])
 
 const onHandleFavoriteClick=()=>{
     setFavorite(!favorite)

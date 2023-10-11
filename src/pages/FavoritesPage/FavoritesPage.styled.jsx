@@ -16,6 +16,7 @@ padding: 20px;
 display: flex;
 flex-direction: column;
 flex-shrink: 0;
+border-radius: 14px;
 `
 
 export const MainContentContainer = styled.div`

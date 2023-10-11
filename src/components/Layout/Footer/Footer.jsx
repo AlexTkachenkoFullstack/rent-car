@@ -25,7 +25,7 @@ const Footer=()=>{
                                     <FooterContact>Contact Information:</FooterContact>
                                     <FooterContact>Address: 14000, Chernihiv, Shevchenko street, 27</FooterContact>
                                     <FooterContact>Phone: +38(093)11-33-254</FooterContact>
-                                    <FooterContact>Email: rent-car@.ukr.net</FooterContact>
+                                    <FooterContact>Email: rent-car@ukr.net</FooterContact>
                                 </FooterContactsContainer>
                                 <FooterSocial>
                                     <FooterContact>We are on social media:</FooterContact>

@@ -38,7 +38,7 @@ const FormikFilterAll=({onSubmit})=>{
 const cars=useSelector(getAllCars);
  const carsBrands=new Set( [...cars.map(item=>item.make)].sort((a,b)=>a.localeCompare(b)));
 const carsBrandsArray=[...carsBrands];
-const rentPrice=[30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200]
+const rentPrice=[30,40,50,60,70,80,90,100,120,140,160,180,200,300,400,500,600]
 
 const handleSubmit=({brand, price, minMileage, maxMileage}, actions)=>{
     if( minMileage && maxMileage && minMileage>=maxMileage){

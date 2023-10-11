@@ -9,5 +9,8 @@ flex-direction: column;
 export const MainContainer=styled.main`
 flex: 1; 
 overflow: auto;
-padding-top: 20px;
+padding-top: 0;
+@media (min-width: 834px) {
+    padding-top: 20px;
+  }
 `

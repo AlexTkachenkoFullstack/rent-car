@@ -7,22 +7,30 @@ display:flex;
 `
 
 export const Container=styled.div`
-height: 85px;
+height: 55px;
 padding-top:15px;
 padding-bottom:15px;
 display:flex;
+@media (min-width: 834px) {
+  height: 85px;
+}
 `
 
 export const HeaderLeft=styled.div`
 display:flex;
 gap: 10px;
+align-items: center;
 `
 
 export const BurgerButton=styled.button`
-width: 36px;
-height:36px;
+width: 28px;
+height:28px;
 border-style: none;
 background-color: inherit;
+
+@media (min-width: 834px) {
+    display:none
+  }
 `
 
 export const BurgerIcon=styled(TiThMenu)`
@@ -35,34 +43,57 @@ color: rgb(74 74 126);
 }
 `
 export const Logo=styled.img`
-width:60px;
+width:30px;
+@media (min-width: 834px) {
+    width:60px;
+  }
 `
 
 export const HeaderMiddle=styled.div`
 display:flex;
 flex-direction:column;
 align-items: center;
+justify-content: center;
 margin-left:auto;
 margin-right:auto;
+font-size:14px;
+font-family:Dancing Script, cursive;
+font-weight: 700;
+
+@media (min-width: 834px) {
+font-size:20px;
+font-family:Dancing Script, cursive;
+font-weight: 700;
+  }
+
+  @media (min-width: 1440px) {
+font-size:24px;
+  }
 `
 
 export const HeaderMiddleText=styled.p`
-font-size:24px;
-font-family:Dancing Script, cursive;
-font-weight: 700;
 `
 
 export const HeaderRight=styled.nav`
-height: 100%;
-display:flex;
-align-items: center;
-gap: 28px;
+display:none;
+
+    @media (min-width: 834px) {
+    height: 100%;
+    display:flex;
+    align-items: center;
+    gap: 20px;
+        }
+    
+      @media (min-width: 1440px) {
+    font-size:24px;
+    gap: 40px;
+      }
 `
 
 export const Link=styled(NavLink)`
 font-size:24px;
 color:black;
-font-family:Open Sans;
+font-family: Manrope, sans-serif;
 font-weight: 400;
 
 &:hover, &:focus{

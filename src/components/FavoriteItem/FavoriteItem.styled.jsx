@@ -20,9 +20,10 @@ margin-bottom:14px;
 
 export const Image=styled.img`
 object-fit: cover;
+transition: transform .35s ease-in-out;
 
 &:hover{
-    scale: 1.05;
+  transform: scale(1.05);
 }
 `
 export const DescriptionContainer=styled.div`

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const LoadMoreButtonContainer=styled.div`
 width:100%;
-margin-top:100px;
+margin-top:40px;
 padding-bottom:40px;
 display:flex;
 justify-content: center;
@@ -16,6 +16,10 @@ font-weight:500;
 line-height:1.53;
 border: none;
 background-color: inherit;
+
+&:hover, &:focus{
+    color:rgba(11, 68, 205, 1);
+}
 `
 
 export const NoContentContainer=styled.div`

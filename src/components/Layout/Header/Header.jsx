@@ -1,9 +1,21 @@
 import { BurgerButton, BurgerIcon, Container, HeaderContainer, HeaderLeft, HeaderMiddle, HeaderMiddleText, HeaderRight, Link, Logo } from "./Header.styled"
 import logo from './/..//..//..//assets/images/logo.svg'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MobileMenu from "../../MobileMenu/MobileMenu";
 const Header = () => {
     const [showModal, setShowModal] = useState(false);
+
+    useEffect(() => {
+        if (showModal) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
+        return () => {
+          document.body.style.overflow = '';
+        };
+      }, [showModal]);
+
     const openModal = () => {
         setShowModal(!showModal);
       };

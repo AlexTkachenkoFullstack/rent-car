@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { getAllCars } from '../../redux/cars/selectors';
 import { ButtonFilter, FormContainer, InputMileage, Label, MilageContainer, OptionBrand, OptionPrice } from './FormikFilterFavorites.styled';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { formatNumberWithCommas } from '../../utils/formatNumberWithCommas';
 
 const inputBrand={
     fontSize:'18px',
@@ -36,17 +37,26 @@ const carsBrandsArray=[...carsBrands];
 const rentPrice=[30,40,50,60,70,80,90,100,120,140,160,180,200,300,400,500,600]
 
 const handleSubmit=({brand, price, minMileage, maxMileage}, actions)=>{
-    if( minMileage && maxMileage && minMileage>=maxMileage){
-      Notify.failure('Min mileage cannot be greater than max mileage');
-      return
-    }
+  const minMileageValue = minMileage ? parseFloat(minMileage.replace(',', '')) : null;
+  const maxMileageValue = maxMileage ? parseFloat(maxMileage.replace(',', '')) : null;
+
+  if (minMileageValue !== null && maxMileageValue !== null && Number(minMileageValue) >= Number(maxMileageValue)) {
+    Notify.failure('Min mileage cannot be greater than max mileage');
+    return;
+  }
   const valuesToSend = {
         brand,
         price,
-        minMileage,
-        maxMileage,
+        minMileage:minMileageValue,
+        maxMileage:maxMileageValue,
       };
     onSubmit(valuesToSend)    
+}
+
+const onMilageInput=(e) => {
+  const inputValue = e.target.value.replace(/\D/g, ''); 
+  const numericValue =formatNumberWithCommas(inputValue); 
+  e.target.value = numericValue;
 }
 
    return (
@@ -74,8 +84,8 @@ const handleSubmit=({brand, price, minMileage, maxMileage}, actions)=>{
            </Field>
            <Label htmlFor="mileage">Сar mileage / km</Label>
            <MilageContainer>
-                <InputMileage type="number"  id="minMileage" min="1" name="minMileage" placeholder="From" />
-                <InputMileage type="number" id="maxMileage" min="1" name="maxMileage" placeholder="To" />
+                <InputMileage type="text" id="minMileage"  name="minMileage" onInput={onMilageInput} maxLength={7}/>
+                <InputMileage type="text" id="maxMileage"  name="maxMileage"  onInput={onMilageInput} maxLength={7}/>
            </MilageContainer>
            <ButtonFilter type="submit" >Filter</ButtonFilter>
          </FormContainer>

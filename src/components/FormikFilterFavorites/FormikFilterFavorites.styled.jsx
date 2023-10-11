@@ -43,6 +43,7 @@ overflow: auto;
 border-color: rgb(22 174 211);
 border-radius: 8px;
 outline: none;
+padding-left:7px;
 `
 export const ButtonFilter=styled.button`
 width:100%;

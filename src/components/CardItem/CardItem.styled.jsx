@@ -47,7 +47,10 @@ color: rgba(52, 112, 255, 1);
 export const TextContainer=styled.div`
 display:flex;
 flex-direction:column;
-margin-bottom:28px;
+margin-bottom:10px;
+@media (min-width: 834px) {
+   margin-bottom:28px;
+}
 `
 
 export const TextFirstRowContainer=styled.div`
@@ -96,9 +99,9 @@ border-right: 1px rgba(18, 20, 23, 0.1) solid;
 `
 
 export const ButtonLearnMore=styled.button`
-width:100%;
-height:44px;
-border-radius: 14px;
+width:110px;
+height:35px;
+border-radius: 9px;
 background-color:rgba(52, 112, 255, 1);
 color:rgba(255, 255, 255, 1);
 font-size:14px;
@@ -109,5 +112,11 @@ border: none;
 
 &:hover, &:focus{
 background-color:rgba(11, 68, 205, 1);
+}
+
+@media (min-width: 834px) {
+  width:100%;
+  height:44px;
+  border-radius: 14px;
 }
 `

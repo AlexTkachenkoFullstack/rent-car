@@ -20,6 +20,17 @@ const dispatch=useDispatch()
 const favouriteCars=useSelector(getFavorites)
 const [showCarModal, setShowCarModal] = useState(false);
 
+useEffect(() => {
+    if (showCarModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [showCarModal]);
+
 useEffect(()=>{
     const isFavorite=favouriteCars.find(item=>item.id===car.id);
     if(isFavorite){

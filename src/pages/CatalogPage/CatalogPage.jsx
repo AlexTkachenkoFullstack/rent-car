@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import CarsList from "../../components/CarsList";
-import { LoadMoreButton, LoadMoreButtonContainer, NoContentContainer, NoContentText } from "./CatalogPage.styled";
+import { ButtonFilter, ButtonFilterContainer, FormikContainer, LoadMoreButton, LoadMoreButtonContainer, NoContentContainer, NoContentText } from "./CatalogPage.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCars, getFilterCars, isCarsLoading } from "../../redux/cars/selectors";
 import FormikFilterAll from "../../components/FormikFilterAll/FormikFilterAll";
 import { addFilterCars } from "../../redux/cars/slice";
+import MobileFilterModalAll from "../../components/MobileFilterModalAll/MobileFilterModalAll";
 
 
 const CatalogPage = () => {
@@ -18,11 +19,25 @@ const CatalogPage = () => {
   const dispatch =useDispatch()
   const filtredCars=useSelector(getFilterCars)
   const isCarLoading = useSelector(isCarsLoading);
+  const [showModal, setShowModal] = useState(false);
+  
+
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [showModal]);
 
   const handleSubmitFilter=(data)=>{
    setFilter(data);
    setCountPage(1);
    setCountPageIncreased(false);
+   setShowModal(false)
   }
  
   useEffect(() => {
@@ -59,8 +74,21 @@ const CatalogPage = () => {
       }else{setShowButtonLoadMore(true)}
 };
 
-    return (<>
-              <FormikFilterAll onSubmit={handleSubmitFilter}/>
+const openModal = () => {
+  setShowModal(!showModal);
+};
+
+const closeModal = () => {
+  setShowModal(false);
+};
+
+    return (<> 
+              <ButtonFilterContainer>
+                  <ButtonFilter type="button" onClick={openModal}>Filter</ButtonFilter>
+              </ButtonFilterContainer>
+              <FormikContainer>
+                  <FormikFilterAll onSubmit={handleSubmitFilter}/>
+              </FormikContainer>
               {filtredCars.length>0 && (<>
                   <CarsList cars={displayedCars}/>
                   <LoadMoreButtonContainer>
@@ -76,6 +104,7 @@ const CatalogPage = () => {
                   <NoContentText> Try changing the filter.</NoContentText>
               </NoContentContainer>)
               }
+              {showModal && <MobileFilterModalAll onClose={closeModal} onSubmit={handleSubmitFilter}/>}
             </>    
     );
   };
